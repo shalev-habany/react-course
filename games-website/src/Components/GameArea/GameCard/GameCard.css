@@ -1,0 +1,19 @@
+.GameCard {
+    border: 1px solid;
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+}
+
+span {
+    color: #41C9E2;
+}
+
+.GameCard>p {
+    color: #008DDA;
+}
+
+.GameCard>img {
+    width: 200px;
+    border: 1px solid lightblue;
+}

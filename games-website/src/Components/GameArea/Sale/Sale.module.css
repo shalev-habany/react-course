@@ -1,0 +1,12 @@
+/* CSS-Module */
+.beautiful {
+    color: #0D9276;
+    background-color: #ACE2E1;
+}
+
+.container {
+    padding: 5px;
+    display: inline-block;
+    border: 1px solid;
+    margin: 5px;
+}

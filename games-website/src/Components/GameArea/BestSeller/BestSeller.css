@@ -1,0 +1,16 @@
+.BestSeller {
+    border: 1px solid;
+    display: inline-block;
+    padding: 10px;
+}
+
+.BestSeller>.button {
+    color: #0D9276;
+    display: inline-block;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid;
+    border-radius: 5px;
+    background-color: #F7EEDD;
+}

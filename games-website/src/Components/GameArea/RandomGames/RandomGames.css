@@ -1,0 +1,10 @@
+.RandomGames {
+	width: 400px;
+    height: 200px;
+    border: 1px solid lightblue;
+}
+
+.RandomGames>img {
+    width: 100%;
+    height: 100%;
+}

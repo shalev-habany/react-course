@@ -1,0 +1,10 @@
+.App>h1 {
+    text-align: center;
+    color: #008DDA
+}
+
+.App>p {
+    font-size: large;
+    color: #41C9E2;
+    /* background-color: #ACE2E1; */
+}
