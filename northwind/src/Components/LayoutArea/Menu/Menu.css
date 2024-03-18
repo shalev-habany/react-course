@@ -4,3 +4,9 @@
     gap: 20px;
     padding-top: 20px;
 }
+
+.Menu > .active {
+    font-weight: bold;
+    font-family: 'Lucida handwriting';
+    color: #41C9E2;
+}
