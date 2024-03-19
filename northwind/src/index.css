@@ -9,3 +9,19 @@ html, body, #root {
 a {
     color: blue;
 }
+
+form {
+    width: 300px;
+    border: 1px solid;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px;
+    text-align: left;
+}
+
+form input, form button {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}

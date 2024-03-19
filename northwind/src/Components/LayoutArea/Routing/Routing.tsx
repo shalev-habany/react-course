@@ -6,6 +6,7 @@ import { Page404 } from "../Page404/Page404";
 import "./Routing.css";
 import { Spinner } from "../../SharedArea/Spinner/Spinner";
 import { ProductDetails } from "../../ProductArea/ProductDetails/ProductDetails";
+import { AddProduct } from "../../ProductArea/AddProduct/AddProduct";
 
 export function Routing(): JSX.Element {
 
@@ -18,6 +19,7 @@ export function Routing(): JSX.Element {
                 <Route path="/home" element={<Home />} />
                 <Route path="/products" element={<ProductList />} />
                 <Route path="/products/details/:id" element={<ProductDetails />} />
+                <Route path="/products/new" element={<AddProduct />} />
                 <Route path="/about" element={suspenseAbout} />
                 <Route path="/" element={<Navigate to="/home" />} />
                 <Route path="*" element={<Page404 />} />

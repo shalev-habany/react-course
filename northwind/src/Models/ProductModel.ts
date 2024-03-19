@@ -4,4 +4,5 @@ export class ProductModel {
     price: number;
     stock: number;
     imageUrl: string;
+    image: File;
 }
