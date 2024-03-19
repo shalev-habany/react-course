@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./ProductDetails.css";
 import { useEffect, useState } from "react";
 import { ProductModel } from "../../../Models/ProductModel";
@@ -11,6 +11,14 @@ export function ProductDetails(): JSX.Element {
     const id = +params.id
 
     const [details, setDetails] = useState<ProductModel>({} as ProductModel);
+    const navigator = useNavigate();
+
+    async function deleteMe() {
+        const sure = window.confirm("Are you sure?");
+        if (!sure) return;
+        await productService.deleteProduct(id);
+        navigator('/products');
+    }
 
     useEffect(() => {
         productService.getProduct(id)
@@ -24,7 +32,17 @@ export function ProductDetails(): JSX.Element {
             <h3>Stock: {details?.stock} </h3>
             <img src={details?.imageUrl} />
             <br />
+
             <NavLink to="/products">Back </NavLink>
+
+            <span> | </span>
+
+            <NavLink to={"/products/edit/" + details?.id}>Edit</NavLink>
+            
+            <span> | </span>
+
+            <NavLink to="#" onClick={deleteMe}>Delete</NavLink>
+
         </div>
     );
 }

@@ -25,3 +25,10 @@ form input, form button {
     box-sizing: border-box;
     margin-bottom: 20px;
 }
+
+.error {
+    font-weight: bold;
+    color: #5356FF;
+    position: absolute;
+    margin-left: 30px;
+}

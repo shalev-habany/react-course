@@ -1,24 +1,36 @@
-import { useForm } from "react-hook-form";
-import "./AddProduct.css";
+import "./EditProduct.css";
 import { ProductModel } from "../../../Models/ProductModel";
+import { useNavigate, useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { productService } from "../../../Services/ProductService";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
+export function EditProduct(): JSX.Element {
 
-export function AddProduct(): JSX.Element {
-
-    const { register, handleSubmit, formState } = useForm<ProductModel>();
+    const { register, handleSubmit, formState, setValue, watch } = useForm<ProductModel>();
     const navigate = useNavigate();
+    const props = useParams();
+    const id = +props.id;
+
+    useEffect(() => {
+        productService.getProduct(id).then((dbProduct: ProductModel) => {
+            setValue("name", dbProduct.name);
+            setValue("price", dbProduct.price);
+            setValue("stock", dbProduct.stock);
+            setValue("imageUrl", dbProduct.imageUrl);
+        });
+    }, []);
 
     async function send(product: ProductModel): Promise<void> {
+        product.id = id;
         product.image = (product.image as unknown as FileList)[0];
-        await productService.addProduct(product);
+        await productService.updateProduct(product);
+        alert("product had been updated");
         navigate('/products');
     }
 
-
     return (
-        <div className="AddProduct">
+        <div className="EditProduct">
             <form onSubmit={handleSubmit(send)}>
 
                 <label>Name: </label>
@@ -35,9 +47,9 @@ export function AddProduct(): JSX.Element {
 
                 <label>Image: </label>
                 <input type="file" {...register("image")} />
-                <span className="error">{formState.errors?.image?.message}</span>
+                <img src={watch("imageUrl")} />
 
-                <button>Add</button>
+                <button>Edit</button>
 
             </form>
         </div>
