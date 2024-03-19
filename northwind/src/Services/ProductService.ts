@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { ProductModel } from "../Models/ProductModel";
 import { appConfig } from "../Utils/AppConfig";
+import { notify } from "../Utils/Notify";
 
 class ProductService {
     async getAllProducts(): Promise<ProductModel[]> {
@@ -23,6 +24,7 @@ class ProductService {
         };
         const response = await axios.post<ProductModel>(appConfig.productsUrl, product, options);
         const dbProduct = response.data;
+        notify.success("Product has been added");
         console.log(dbProduct);
     }
 

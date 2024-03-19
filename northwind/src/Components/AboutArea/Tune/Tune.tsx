@@ -1,0 +1,29 @@
+import "./Tune.css";
+import audioSrc from "../../../assets/audio/fade-into-you.mp3";
+import { RefObject, useRef } from "react";
+
+export function Tune(): JSX.Element {
+
+    const audioRef: RefObject<HTMLAudioElement> = useRef();
+
+    function play() {
+        audioRef.current.play();
+    }
+
+    function pause() {
+        audioRef.current.pause();
+    }
+
+    function stop() {
+        audioRef.current.load();
+    }
+
+    return (
+        <div className="Tune">
+            <audio src={audioSrc} ref={audioRef} />
+            <button onClick={play}>▶</button>
+            <button onClick={pause}>⏯</button>
+            <button onClick={stop}>⏹</button>
+        </div>
+    );
+}

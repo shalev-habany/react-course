@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { ProductModel } from "../../../Models/ProductModel";
 import { productService } from "../../../Services/ProductService";
 import { NavLink } from "react-router-dom";
+import { notify } from "../../../Utils/Notify";
+import { useTitle } from "../../../Utils/UseTitle";
 
 export function ProductDetails(): JSX.Element {
 
@@ -12,17 +14,28 @@ export function ProductDetails(): JSX.Element {
 
     const [details, setDetails] = useState<ProductModel>({} as ProductModel);
     const navigator = useNavigate();
+    useTitle('Product Page');
 
     async function deleteMe() {
         const sure = window.confirm("Are you sure?");
         if (!sure) return;
-        await productService.deleteProduct(id);
+        try {
+            await productService.deleteProduct(id);
+        } catch (error) {
+            notify.error(error);
+            return;
+        }
+        notify.success("deleted");
         navigator('/products');
     }
 
     useEffect(() => {
         productService.getProduct(id)
-            .then((productDetails: ProductModel) => setDetails(productDetails));
+            .then((productDetails: ProductModel) => setDetails(productDetails))
+            .catch((error) => {
+                notify.error(error);
+                navigator('/products');
+            });
     }, []);
 
     return (
@@ -38,7 +51,7 @@ export function ProductDetails(): JSX.Element {
             <span> | </span>
 
             <NavLink to={"/products/edit/" + details?.id}>Edit</NavLink>
-            
+
             <span> | </span>
 
             <NavLink to="#" onClick={deleteMe}>Delete</NavLink>

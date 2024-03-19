@@ -1,18 +1,26 @@
 import { useForm } from "react-hook-form";
-import "./AddProduct.css";
+import { useNavigate } from "react-router-dom";
 import { ProductModel } from "../../../Models/ProductModel";
 import { productService } from "../../../Services/ProductService";
-import { useNavigate } from "react-router-dom";
+import { notify } from "../../../Utils/Notify";
+import "./AddProduct.css";
+import { useTitle } from "../../../Utils/UseTitle";
 
 
 export function AddProduct(): JSX.Element {
 
     const { register, handleSubmit, formState } = useForm<ProductModel>();
     const navigate = useNavigate();
+    useTitle('Add Product');
 
     async function send(product: ProductModel): Promise<void> {
         product.image = (product.image as unknown as FileList)[0];
-        await productService.addProduct(product);
+        try {
+            await productService.addProduct(product);
+        } catch (error: any) {
+            notify.error(error);
+            return;
+        }
         navigate('/products');
     }
 
