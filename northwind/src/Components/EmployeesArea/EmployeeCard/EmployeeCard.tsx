@@ -10,9 +10,10 @@ export function EmployeeCard(props: EmployeesCardProps): JSX.Element {
     return (
         <div className="EmployeeCard">
             <div>
-                <span>{props.employee.firstName}</span>
-                <span>{props.employee.lastName}</span>
                 <img src={props.employee.imageUrl} />
+                <br></br>
+                <span>{props.employee.firstName} </span>
+                <span>{props.employee.lastName}</span>
             </div>
         </div>
     );
