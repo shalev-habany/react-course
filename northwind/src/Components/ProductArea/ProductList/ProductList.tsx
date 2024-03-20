@@ -6,6 +6,7 @@ import { ProductCard } from "../ProductCard/ProductCard";
 import { useNavigate } from "react-router-dom";
 import { notify } from "../../../Utils/Notify";
 import { useTitle } from "../../../Utils/UseTitle";
+import { Spinner } from "../../SharedArea/Spinner/Spinner";
 
 export function ProductList(): JSX.Element {
 
@@ -26,6 +27,8 @@ export function ProductList(): JSX.Element {
 
     return (
         <div className="ProductList">
+            {!products.length && <Spinner />}
+
             {products.map(p => <ProductCard key={p.id} product={p} />)}
         </div>
     );

@@ -6,4 +6,5 @@ export class EmployeeModel {
     city: string;
     birthDate: string;
     imageUrl: string;
+    image: File;
 }

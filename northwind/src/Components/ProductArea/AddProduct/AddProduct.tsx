@@ -10,7 +10,7 @@ import { useTitle } from "../../../Utils/UseTitle";
 export function AddProduct(): JSX.Element {
 
     const { register, handleSubmit, formState } = useForm<ProductModel>();
-    const navigate = useNavigate();
+    const navigator = useNavigate();
     useTitle('Add Product');
 
     async function send(product: ProductModel): Promise<void> {
@@ -21,7 +21,7 @@ export function AddProduct(): JSX.Element {
             notify.error(error);
             return;
         }
-        navigate('/products');
+        navigator('/products');
     }
 
 

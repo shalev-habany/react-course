@@ -1,3 +1,8 @@
-.EmployeesList {
-	
+.EmployeesList > table {
+	margin: auto;
+}
+
+.EmployeesList table, .EmployeesList th, .EmployeesList td {
+    border: 1px solid;
+    border-collapse: collapse;
 }
